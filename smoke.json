@@ -1,0 +1,20 @@
+[
+  {
+    "data": "232047487a205320524920522035300a3120302030202e352030202e352030203020300a32202e372030202e372030202e372030202e3720300a",
+    "args": [
+      "--ports",
+      "2"
+    ],
+    "exit": 1,
+    "assertion": "r['failing_sample_indices']==[1] and abs(r['samples'][1]['max_singular_value']-1.4)<1e-12"
+  },
+  {
+    "data": "232047487a205320524920522035300a31203020302031203020312030203020300a",
+    "args": [
+      "--ports",
+      "2"
+    ],
+    "exit": 0,
+    "assertion": "r['samples'][0]['largest_power_gain']==1"
+  }
+]

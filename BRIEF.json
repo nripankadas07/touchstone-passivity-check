@@ -1,0 +1,29 @@
+{
+  "repo": "touchstone-passivity-check",
+  "module": "touchstone_passivity_check",
+  "units": 16,
+  "capability": "Check sampled one/two-port Touchstone S-matrix gain with an explicit singular-value report.",
+  "user": "RF engineers reviewing a small exported network capture before model use.",
+  "pain": "Element magnitudes alone can hide coupled gain; reviewers need the worst sampled matrix and the exact tolerance convention.",
+  "comparables": [
+    "ra3xdh/qucs_s",
+    "Qucs/qucs",
+    "scikit-rf/scikit-rf"
+  ],
+  "leader": "ra3xdh/qucs_s",
+  "query": "RF microwave; Qucs",
+  "quick": "touchstone-passivity-check example.s2p --ports 2",
+  "expected": "The example intentionally exits 1: sample 0 passes, sample 1 has maximum singular value 1.4 and power gain 1.96.",
+  "contract": "ASCII Touchstone 1.0 subset, one or two ports explicitly declared with --ports. A single option line explicitly specifies frequency units, S, RI/MA/DB and shared positive real R. Two-port order is S11,S21,S12,S22. The largest eigenvalue of S^H S gives power gain; the square root must be at most 1+tolerance (default 1e-9). Reciprocity is informational, not a passivity requirement. Continuations are supported; frequency must strictly increase and may start at zero.",
+  "limits": "1 MiB, 4096 samples, numeric token length64, frequency<=1e15 Hz, shared R<=1e6 ohms, RI components/MA magnitudes<=1000, DB -600..60, MA/DB angles<=360000 degrees. Tolerance0..0.001. No Touchstone2 keywords, noise records, per-port/complex reference, impedance/gamma/modal annotations, renormalization, interpolation, causality or uncertainty assessment. Passing sampled data is not physical-device certification.",
+  "acceptance": "Recover coupled gain missed by per-column checks, lossless through and passive nonreciprocal networks; RI/MA/DB agreement; reject malformed options, row counts and frequency order.",
+  "notes": "Qucs-S and Qucs provide circuit simulation and Touchstone components. Scikit-rf already implements passivity/dissipation-matrix tests and much broader network analysis. Its per-port reference issues informed our explicit common-real-reference limit; they are not verified requests for this product. No missing competitor capability is claimed.",
+  "overlap": "All193 owned repositories were compared. No existing RF S-parameter matrix inspector was found. General numeric or evidence tools do not implement this physical-format contract.",
+  "topics": [
+    "touchstone",
+    "rf",
+    "s-parameters",
+    "python",
+    "signal-integrity"
+  ]
+}

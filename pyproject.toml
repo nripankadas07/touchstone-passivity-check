@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "touchstone-passivity-check"
+version = "0.1.0"
+description = "Check sampled one/two-port Touchstone S-matrix gain with an explicit singular-value report."
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = []
+[project.scripts]
+touchstone-passivity-check = "touchstone_passivity_check:main"
+[tool.setuptools]
+py-modules = ["touchstone_passivity_check"]
